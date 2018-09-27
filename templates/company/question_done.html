@@ -1,0 +1,11 @@
+{% extends "company/base_biz.html" %}
+{% load static %}
+{% block header %}
+<title>Trippp -お問い合わせを受け付けました-</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/question.css' %}">
+<script type="text/javascript" src="{% static 'js/redirect.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  お問い合わせ頂きありがとうございます。数秒後にトップページに遷移します。遷移しない場合、お急ぎの場合は<a href="/company/">こちら</a>から。
+{% endblock %}

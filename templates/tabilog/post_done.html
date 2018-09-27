@@ -1,0 +1,11 @@
+{% extends "company/base_biz.html" %}
+{% load static %}
+{% block header %}
+<title>Trippp -投稿完了-</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/question.css' %}">
+<script type="text/javascript" src="{% static 'js/redirect_tabilog.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  投稿お疲れ様でした、5秒後にTOPへ自動で遷移します。もし遷移しない場合、<a href="/">こちらからTOPへ</a>。
+{% endblock %}

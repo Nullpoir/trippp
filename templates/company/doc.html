@@ -1,0 +1,11 @@
+{% extends "company/base_biz.html" %}
+{% load static %}
+{% block header %}
+<title>Trippp -{{article.title}}-</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/doc.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="content__pubdate">{{article.pub_date}}</div>
+  {{article.body | safe}}
+{% endblock %}

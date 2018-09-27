@@ -1,0 +1,45 @@
+.root__content{
+  padding:10px 5%;
+  width:90%;
+  height:auto;
+  flex:1;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  justify-content:center;
+  align-items: center;
+}
+
+.content{
+  color:#010101;
+  width:50%;
+  height:auto;
+  margin:auto;
+  border-radius: 10px;
+  padding:7% 1%;
+  background-color: #fefefe;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+}
+.content__form{
+  width:50%;
+}
+.content__form__wrapper{
+  background-color: #fefefe;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  justify-content:center;
+  align-items: center;
+}
+
+.content__register{
+  width:49%;
+  height:100%;
+  padding-left: 1%;
+  border-left: solid 1px gray;
+}

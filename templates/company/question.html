@@ -1,0 +1,25 @@
+{% extends "company/base_biz.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block header %}
+<title>Trippp -お問い合わせページ-</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/question.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content__verbose">
+      お名前とメールアドレス、お問い合わせ内容をご記入の上フォームから送信してください。担当者より数日以内にご連絡差し上げます。<br>
+    </div>
+
+    <form class="content__form" action="" method="post">
+      {% csrf_token %}
+        <label class="label">{{form.name.label}}</label>
+        {{form.name|add_class:"short-form"}}
+        <label class="label">{{form.mail.label}}</label>
+        {{form.mail|add_class:"short-form"}}
+        <label class="label">{{form.query.label}}</label>
+        {{form.query|add_class:"long-form"}}
+        <button type='submit' name='action' value='confirm'>確認</button>
+    </form>
+
+{% endblock %}

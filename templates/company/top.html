@@ -1,0 +1,31 @@
+{% extends "company/base_biz.html" %}
+{% load static %}
+{% block header %}
+<title>Trippp -Trip Group-</title>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="{% static 'js/slide.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/slick-1.8.1/slick/slick.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'js/slick-1.8.1/slick/slick.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'js/slick-1.8.1/slick/slick-theme.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/top.css' %}">
+{% endblock %}
+
+{% block topimage %}
+    <div id="root__topimage">
+      <div id="root__topimage__bf"><img src="{%static 'img/topimage1.jpg'%}" style="width:100%;height:100%;" alt="no-image"></div>
+      <div id="root__topimage__bf"><img src="{%static 'img/topimage2.jpg'%}" style="width:100%;height:100%;" alt="no-image"></div>
+      <div id="root__topimage__bf"><img src="{%static 'img/topimage3.jpg'%}" style="width:100%;height:100%;" alt="no-image"></div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>事業紹介</h1>
+      <h2>Trip　Groupの仕事</h2>
+      Trip Groupは旅行の情報を簡単に共有できる世界を作ることを目指しております。
+      その手段として私達はインターネットに目をつけました。そのため私達はWebを中心とする事業を展開しております。
+      <h2>Trippp Web Service</h2>
+      Trippp Web Serviceは旅行の情報を簡単に投稿できそれを共有するサービスです。現在はまだ開発途中ですので、お待ちください。
+      <h2>Webコンテンツ制作</h2>
+      HP作成からサーバー環境の構築までお引き受けいたします。くわしくは<a href="/company/question">お問い合わせ</a>よりお願いいたします。
+
+{% endblock %}

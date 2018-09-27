@@ -1,0 +1,84 @@
+{% load static %}
+<!doctype html>
+<html lang="ja" id="trippp">
+<head>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3138418728413389",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="{% static 'js/menu.js' %}"></script>
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+  {% block header %}
+  {% endblock %}
+</head>
+<body id="root">
+  <div class="root__header">
+    <div class="header">
+      <div class="header__title"><a href="/"class="header__title__logo">Trippp</a></div>
+      <div class="header__menu">
+      {% if user.is_authenticated %}
+        <a class="header__menu__list" href="{% url 'account:logout' %}">ログアウト</a>
+        <a class="header__menu__list" href="{% url 'account:mypage' user.pk %}">マイページ</a>
+      {% else %}
+        <a class="header__menu__list" href="{% url 'account:login' %}">ログイン</a>
+      {% endif %}
+        <div class="sp-menu">
+          <i class="fas fa-bars"></i>
+        </div>
+    </div>
+    </div>
+  </div>
+  <div class="sp-menu__list">
+    {% if user.is_authenticated %}
+      <a class="sp-menu__list__item" href="{% url 'account:logout' %}">ログアウト</a>
+      <a class="header__menu__list" href="{% url 'account:mypage' user.pk %}">マイページ</a>
+    {% else %}
+      <a class="sp-menu__list__item" href="{% url 'account:login' %}">ログイン</a>
+    {% endif %}
+  </div>
+  {% block topimage %}{% endblock %}
+  <div class="root__content">
+    <div class="content">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer__left">
+      <span class="footer__title">Social Media</span>
+      <div class="footer_items-container">
+        <span class="icon-set"><a class="line" href="https://line.me/R/ti/p/%40hhu6441"><i class="fab fa-line"></i></a></span>
+        <span class="icon-set"><a class="twitter" href="https://twitter.com/trippp_official"><i class="fab fa-twitter-square"></i></a></span>
+        <span class="icon-set"><a class="youtube" href="https://www.youtube.com/channel/UCjkqXG0Eq08Cx120uigukcQ"><i class="fab fa-youtube-square"></i></a></span>
+      </div>
+    </div>
+    <div class="footer__center">
+      <span class="footer__title">About us</span>
+      <div class="footer_items-container">
+        <span class="footer__links"><a style="color:#fefefe;" href="">Profile</a></span>
+        <span class="footer__links"><a style="color:#fefefe;" href="/company/docs/2/">Our mission</a></span>
+      </div>
+    </div>
+    <div class="footer__right">
+      <span class="footer__title">Notice</span>
+      <div class="footer_items-container">
+        <span class="footer__links"><a style="color:#fefefe;" href="/company/docs/1/">Privacy Policy</a></span>
+      </div>
+    </div>
+    <div class="footer__copyright">
+      Copyright Trippp & Trip Group Since 2018.4.10
+    </div>
+  </div>
+
+
+</body>
+</html>

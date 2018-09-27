@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table">
+    <tbody>
+        <tr>
+            <th>ユーザー名</th>
+            <td>{{ user.nickname }}</td>
+        </tr>
+        {% if user.username != user.email %}
+        <tr>
+            <th>ユーザーID</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+
+        </tr>
+    </tbody>
+</table>
+<a href="/tabilog/post">投稿</a>
+{% endblock %}

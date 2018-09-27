@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<title>Trippp -トップページ-</title>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="{% static 'js/slide.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/slick-1.8.1/slick/slick.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'js/slick-1.8.1/slick/slick.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'js/slick-1.8.1/slick/slick-theme.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/top.css' %}">
+{% endblock %}
+
+{% block topimage %}
+    <div id="root__topimage">
+      <div class="root__topimage__bf"><img src="{%static 'img/topimage1.jpg'%}" style="width:100%;height:100%;" alt="no-image"></img></div>
+      <div class="root__topimage__bf"><img src="{%static 'img/topimage2.jpg'%}" style="width:100%;height:100%;" alt="no-image"></img></div>
+      <div class="root__topimage__bf"><img src="{%static 'img/topimage3.jpg'%}" style="width:100%;height:100%;" alt="no-image"></img></div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h2>あなたの旅、語ってみませんか？</h2>
+      Tripppとは、旅の記録を集積するサイトです。こんなことしたけど語る場所がないというあなたに思う存分語る場を設けました。
+    <h2>Trip Groupにお仕事依頼</h2>
+      とびきり優秀な旅行コンサルタントに、一からTripppを作ったエンジニアが在籍しております。<br>
+      くわしくは<a href="/company/">こちら</a>から
+{% endblock %}

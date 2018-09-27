@@ -1,0 +1,26 @@
+{% extends "company/base_biz.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block header %}
+<title>Trippp -お問い合わせページ-</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/question.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="content__verbose">
+    入力内容にお間違いないでしょうか？よろしければ送信ボタンをクリックし、送信をしてください。
+  </div>
+
+  <form class="content__form" action="" method="post">
+    {% csrf_token %}
+      <label class="label">{{form.name.label}}</label>
+      {{form.name|add_class:"short-form"}}
+      <label class="label">{{form.mail.label}}</label>
+      {{form.mail|add_class:"short-form"}}
+      <label class="label">{{form.query.label}}</label>
+      {{form.query|add_class:"long-form"}}
+      <button type='submit' name='action' value='send'>送信</button>
+      <button type='submit' name='action' value='modify'>修正する</button>
+  </form>
+
+{% endblock %}
