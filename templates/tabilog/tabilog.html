@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<title>Trippp -{{tabilog.title}}-</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/tabilog.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="content__pubdate">{{tabilog.pub_date}}</div>
+  {{tabilog.body | safe}}
+{% endblock %}

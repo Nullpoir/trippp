@@ -42,6 +42,8 @@
   flex-direction: column;
   min-height: 100%;
   font-size: 1.6rem;
+	letter-spacing: 0.02rem;
+	line-height: 1.42857;
   background-color: #fefefe;
 }
 
@@ -273,22 +275,25 @@
     display: -ms-flexbox;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    z-index: 400;
+		align-items: flex-end;
+    z-index: 200;
     position:fixed;
     top:50px;
     right:0px;
-    width:50%;
+    width:100%;
     height:100%;
-    background:#333;
-		opacity: 0.9;
+    background-color: rgba(0,0,0,0);
     font-size: 2rem;
-    padding:3%;
-		border-left:solid 1px #aaa;
 		transform-origin: right;
 		transform:rotateY(90deg);
 		transition: all 0.3s ease-out;
   }
+	.list__area{
+		width:50%;
+		background-color:#333;
+		opacity: 0.9;
+		z-index: 201;
+	}
   .sp-menu__list.is_active{
 		transform-origin: right;
 		transform:rotateY(0deg);
@@ -301,7 +306,6 @@
     width:100%;
     text-align: center;
     padding:0.5rem 0;
-		border-bottom: solid 1px #55ccff;
   }
   .header__menu__list:hover{
     margin-bottom: -3px;

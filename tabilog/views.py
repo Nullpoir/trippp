@@ -24,6 +24,10 @@ def tabilog_list_show(request):
 
     return render(request,"tabilog/tabilog_list.html",{"lists":tabilog_output})
 
+def tabilog_show(request,number):
+    tabilog_render=tabilog.objects.get(pk=number)
+    return render(request,"tabilog/tabilog.html",{"tabilog":tabilog_render})
+
 
 @login_required
 def TabilogPost(request):
