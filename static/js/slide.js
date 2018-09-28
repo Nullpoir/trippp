@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('#root__topimage').slick({
     autoplay: true,
-    lazyLoad:1000,
+    lazyLoad: 'ondemand',
     mobileFirst:true,
     autoplaySpeed:5000,
   });
