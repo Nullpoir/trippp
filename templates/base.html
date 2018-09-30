@@ -38,12 +38,14 @@
     </div>
   </div>
   <div class="sp-menu__list">
-    {% if user.is_authenticated %}
-      <a class="sp-menu__list__item" href="{% url 'account:logout' %}">ログアウト</a>
-      <a class="header__menu__list" href="{% url 'account:mypage' user.pk %}">マイページ</a>
-    {% else %}
-      <a class="sp-menu__list__item" href="{% url 'account:login' %}">ログイン</a>
-    {% endif %}
+    <div class="list__area">
+      {% if user.is_authenticated %}
+        <a class="sp-menu__list__item" href="{% url 'account:logout' %}">ログアウト</a>
+        <a class="header__menu__list" href="{% url 'account:mypage' user.pk %}">マイページ</a>
+      {% else %}
+        <a class="sp-menu__list__item" href="{% url 'account:login' %}">ログイン</a>
+      {% endif %}
+    </div>
   </div>
   {% block topimage %}{% endblock %}
   <div class="root__content">

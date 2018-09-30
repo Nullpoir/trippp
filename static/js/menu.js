@@ -3,5 +3,5 @@ $(document).on("click",".sp-menu",function(){
 });
 
 $(document).on("click",".sp-menu__list",function(){
-  $(".sp-menu__list").toggleClass('is_active');
+  $(".sp-menu__list").removeClass('is_active');
 });

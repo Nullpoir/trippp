@@ -96,7 +96,7 @@ class UserCreateComplete(generic.TemplateView):
         return HttpResponseBadRequest()
 
 class OnlyYouMixin(UserPassesTestMixin):
-    raise_exception = True
+    raise_exception = False
 
     def test_func(self):
         user = self.request.user
