@@ -303,7 +303,7 @@
   .sp-menu__list__item{
     display:block;
     color:#fefefe !important;
-    max-height:3rem;
+    min-height:3rem;
     width:100%;
     text-align: center;
     padding:0.5rem 0;

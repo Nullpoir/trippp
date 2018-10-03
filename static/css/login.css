@@ -1,6 +1,5 @@
 .root__content{
-  padding:10px 5%;
-  width:90%;
+  width:100%;
   height:auto;
   flex:1;
   display: flex;
@@ -42,4 +41,61 @@
   height:100%;
   padding-left: 1%;
   border-left: solid 1px gray;
+}
+@media(max-width:900px){
+  .root__content{
+    padding:10px 5%;
+    width:90%;
+    height:auto;
+    flex:1;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    justify-content:center;
+    align-items: center;
+  }
+
+  .content{
+    color:#010101;
+    width:98%;
+    height:auto;
+    margin:auto;
+    border-radius: 10px;
+    padding:7% 1%;
+    background-color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+  }
+  .content__form{
+    width:100%;
+  }
+  .content__form__wrapper{
+    background-color: #fefefe;
+    width: 100%;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    justify-content:center;
+    align-items: center;
+  }
+  .card-body{
+    width: 100%;
+  }
+  .card-body__field{
+    width: 100%;
+  }
+  .form-control{
+    width: 100%;
+  }
+  .content__register{
+    width:100%;
+    border-left: none;
+  }
+
 }

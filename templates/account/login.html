@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {%load static%}
+{% load widget_tweaks %}
 {% block header %}
 <title>Trippp -ログイン-</title>
 <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
@@ -12,7 +13,7 @@
       {{ form.non_field_errors }}
         {% for field in form %}
           {{field.label}}:<br>
-          {{ field }}
+          {{ field | add_class:"card-body__field"}}
           {{ field.errors }}<br><br>
       {% endfor %}
       <button type="submit" class="submit_button" >ログイン</button>
@@ -27,6 +28,6 @@
   Tripppにあなたのたびろぐを残すには会員登録が必要です。下記のリンクより登録手続きをしてください。<br>
   <a href="{% url 'account:user_create' %}"  >会員登録</a><br>
   <h2>パスワードをお忘れですか？</h2>
-  パスワード変更手続きは<a href="">こちら</a>
+  パスワード変更手続きは<a href="/account/password_reset/">こちら</a>
 </div>
 {% endblock %}
