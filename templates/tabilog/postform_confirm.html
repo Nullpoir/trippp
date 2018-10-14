@@ -3,6 +3,7 @@
 {% load widget_tweaks %}
 {% block header %}
 <title>Trippp -記事投稿(確認画面)-</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/postform.css' %}">
 {{ form.media }}
 {% endblock %}
 
@@ -18,8 +19,8 @@
     {{form.title|add_class:"short-form"}}
     <label class="label">{{form.query.label}}</label>
     {{form.body|add_class:"long-form"}}
-    <button type='submit' name='action' value='send'>送信</button>
-    <button type='submit' name='action' value='modify'>修正する</button>
+    <button type='submit' class="form__buttons buttons__blue" name='action' value='send'>送信</button>
+    <button type='submit' class="form__buttons buttons__green" name='action' value='modify'>修正する</button>
 </form>
 
 {% endblock %}

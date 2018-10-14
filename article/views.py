@@ -24,7 +24,7 @@ def question_get(request):
             own_email=settings.EMAIL_HOST_USER
             message_template = get_template('mail_template/query_notify.txt')
             message = message_template.render(context)
-            send_mail("Trippp Recieved Customer's offer", message, own_email, [own_email,])
+            send_mail("Trippp Recieved Customer's offer", message, own_email, ["nullpoir0805@gmail.com",])
             return HttpResponseRedirect("/company/question_done")
         elif request.POST["action"] == "modify":
             context={"form":QuestionForm(request.POST)}

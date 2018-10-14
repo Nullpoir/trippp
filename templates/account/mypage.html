@@ -1,22 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
+{% block header %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/mypage.css' %}">
+{% endblock %}
 {% block content %}
-<table class="table">
-    <tbody>
-        <tr>
-            <th>ユーザー名</th>
-            <td>{{ user.nickname }}</td>
-        </tr>
-        {% if user.username != user.email %}
-        <tr>
-            <th>ユーザーID</th>
-            <td>{{ user.email }}</td>
-        </tr>
-        {% endif %}
-        <tr>
-
-        </tr>
-    </tbody>
-</table>
-<a href="/tabilog/post">投稿</a>
-<a href="/tabilog/post_history/{{user.pk}}?page=1/">自分の投稿</a>
+<div class="content__userinfo">
+  <p>ユーザー名:{{user.nickname}}</p>
+  <p>ユーザーID:{{user.email}}</p>
+</div>
+<div class="content__functions-container">
+  <a class="functions-container__button button__left" href="/tabilog/post">投稿</a>
+  <a class="functions-container__button button__center" href="/tabilog/post_history/{{user.pk}}?page=1/">自分の投稿</a>
+  <a class="functions-container__button button__right" href="{% url 'account:password_change' %}">パスワードの変更</a>
+</div>
 {% endblock %}

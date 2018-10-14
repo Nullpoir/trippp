@@ -19,8 +19,8 @@
       {{form.mail|add_class:"short-form"}}
       <label class="label">{{form.query.label}}</label>
       {{form.query|add_class:"long-form"}}
-      <button type='submit' name='action' value='send'>送信</button>
-      <button type='submit' name='action' value='modify'>修正する</button>
+      <button type='submit' name='action' class="form__buttons buttons__blue" value='send'>送信</button>
+      <button type='submit' name='action' class="form__buttons buttons__green" value='modify'>修正する</button>
   </form>
 
 {% endblock %}

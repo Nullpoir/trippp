@@ -10,27 +10,23 @@
 }
 #trippp a{
   text-decoration: none;
-  color:#010101;
 }
 #trippp h1{
-	border-left:solid 7px #55ccff;
-	border-bottom:solid 2px #55ccff;
-	border-radius: 3px;
+	border-left:solid 3px #55ccff;
+	background-color:#eee;
 	width:auto;
 	padding-left: 1rem;
 	font-weight: normal;
 }
 #trippp h2{
-	border-left:solid 4px #55ccff;
-	padding-left: 1rem;
+	border-bottom:solid 2px #55ccff;
 	font-weight: normal;
 }
 .content a{
-  text-decoration: underline !important;
-  color:#00F !important;
+  color: #22aadd;
 }
-.content a:visited{
-  color:#990099 !important;
+.content a:hover{
+  opacity: 0.7;
 }
 #root{
   margin:0;
@@ -106,11 +102,21 @@
   margin:0 0.5%;
   text-decoration: none;
   color:#000;
+	position: relative;
 }
-
-.header__menu__list:hover{
-  margin-bottom: -3px;
-  border-bottom:solid 3px #55ccff;
+.header__menu__list::after{
+	background-color: #55ccff;
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 3px;
+  left: 0;
+  position: absolute;
+  transition: .3s all;
+  width: 0;
+}
+.header__menu__list:hover:after{
+  width: 100%;
 }
 
 

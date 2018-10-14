@@ -27,6 +27,29 @@
   height: 400px;
 }
 
+.form__buttons{
+  width:40%;
+  margin: 0 auto;
+  margin-top: 10px;
+  height:50px;
+  border-radius: 10px;
+  background:none;
+}
+.buttons__red{
+  border: solid 3px #ff77aa;
+  color:#ff77aa;
+}
+
+.buttons__blue{
+  border: solid 3px #55ccff;
+  color:#55ccff;
+}
+
+.buttons__green{
+  border: solid 3px #11dd55;
+  color:#11dd55;
+}
+
 @media(max-width:900px){
   .root__content{
     padding:5px 2% 5px 2%;
@@ -37,5 +60,8 @@
   .content{
     padding:10px 2%;
     width:96%;
+  }
+  .form__buttons{
+    width: 100%;
   }
 }
