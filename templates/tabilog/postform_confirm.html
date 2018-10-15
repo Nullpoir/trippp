@@ -17,8 +17,14 @@
   {% csrf_token %}
     <label class="label">{{form.title.label}}</label>
     {{form.title|add_class:"short-form"}}
-    <label class="label">{{form.query.label}}</label>
-    {{form.body|add_class:"long-form"}}
+    <label class="label">{{form.script.label}}</label>
+    {{form.script|add_class:"long-form"}}
+    下書きにする:{{form.is_editing}}
+    画像
+    {{ images.management_form }}
+    {% for image in images %}
+        {{ iamge.as_p }}
+    {% endfor %}
     <button type='submit' class="form__buttons buttons__blue" name='action' value='send'>送信</button>
     <button type='submit' class="form__buttons buttons__green" name='action' value='modify'>修正する</button>
 </form>

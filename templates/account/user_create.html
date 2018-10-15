@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block header %}
 <title>Trippp -ユーザー登録-</title>
-<link rel="stylesheet" type="text/css" href="{% static 'css/user.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/user_create.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -13,12 +14,16 @@
       {{ form.non_field_errors }}
       {% for field in form %}
       <div class="form">
-          <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
-          {{ field }}
-          {{ field.errors }}
+          <label class="form__label">{{ field.label_tag }}</label>
+          {{ field | add_class:"short-form"}}
+      </div>
+      <div class="error">
+        {{ field.errors }}
       </div>
       {% endfor %}
       {% csrf_token %}
-      <button type="submit" class="btn btn-primary btn-lg">送信</button>
+      <div class="form__buttom">
+        <button type="submit" class="form__buttons buttons__red">送信</button>
+      </div>
   </form>
 {% endblock %}

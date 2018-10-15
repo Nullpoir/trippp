@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponseRedirect
-from .forms import TabilogPostingForm
+from .forms import TabilogPostingForm,FileFormset
 from django.contrib.auth.decorators import login_required
 from tabilog.models import tabilog
 from datetime import datetime
@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
-
+PAGE_SIZE=8
 # Create your views here.
 User=get_user_model()
 
@@ -24,7 +24,7 @@ class post_history(UserPassesTestMixin,TemplateView):
 
     def get(self, request, user_pk):
         my_post=tabilog.objects.all().filter(user_pk=user_pk)
-        paginator=Paginator(my_post,1)
+        paginator=Paginator(my_post,PAGE_SIZE)
         page = request.GET.get('page')
         tabilog_output=paginator.get_page(page)
         return self.render_to_response({"lists":tabilog_output})
@@ -67,7 +67,7 @@ def tabilog_list_show(request):
         pass
     else:
         tabilog_all=tabilog.objects.all()
-        paginator=Paginator(tabilog_all,1)
+        paginator=Paginator(tabilog_all,PAGE_SIZE)
         page = request.GET.get('page')
         tabilog_output=paginator.get_page(page)
 
@@ -83,20 +83,47 @@ def tabilog_show(request,number):
 def TabilogPost(request):
     if request.method == "POST":
         if request.POST["action"] == "confirm":
-            context={"form":TabilogPostingForm(request.POST)}
+            input_form=TabilogPostingForm(request.POST)
+            instance_form=TabilogPostingForm(request.POST).save(commit=False)
+            context={
+                "form":input_form,
+                "images":FileFormset(request.POST, files=request.FILES, instance=instance_form)
+            }
+
             return render(request,"tabilog/postform_confirm.html",context)
+
         elif request.POST["action"] == "send":
             username=User.objects.get(pk=request.user.id).nickname
             new_tabilog = tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,body=request.POST["body"])
-            new_tabilog.save()
+            formset = FileFormset(request.POST, files=request.FILES, instance=new_tabilog)
 
-            return HttpResponseRedirect("/tabilog/post_done")
+            # validaiton of form-set
+            if formset.is_valid() and form.is_valid():
+                new_tabilog.save()
+                formset.save()
+                return HttpResponseRedirect("/tabilog/post_done")
+            else:
+                instance_form=TabilogPostingForm(request.POST).save(commit=False)
+                context={
+                    "form":input_form,
+                    "images":FileFormset(request.POST, files=request.FILES, instance=instance_form)
+                }
+                return render(request,"tabilog/postform_confirm.html",context)
+
         elif request.POST["action"] == "modify":
-            context={"form":TabilogPostingForm(request.POST)}
+            input_form=TabilogPostingForm(request.POST)
+            instance_form=TabilogPostingForm(request.POST).save(commit=False)
+            context={
+                "form":input_form,
+                "images":FileFormset(request.POST, files=request.FILES, instance=instance_form)
+            }
             return render(request,"tabilog/postform.html",context)
 
     else:
-        context={"form":TabilogPostingForm()}
+        context={
+            "form":TabilogPostingForm(),
+            "images":FileFormset()
+        }
         return render(request,"tabilog/postform.html",context)
 
 def tabilog_delete(request):
