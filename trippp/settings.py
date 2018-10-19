@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+# BASE_DIR is inner this directory.
+# PROJECT_ROOT is outter this directory.
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
 LOGIN_REDIRECT_URL="/"
@@ -190,3 +194,6 @@ STATICFILES_FINDERS = (
 )
 '''
 STATIC_ROOT=os.path.join(PROJECT_ROOT,"static")
+
+MEDIA_ROOT=os.path.join(BASE_DIR,"media")
+MEDIA_URL="/media/"

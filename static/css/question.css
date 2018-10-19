@@ -34,6 +34,10 @@
   height:50px;
   border-radius: 10px;
   background:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 .buttons__red{
   border: solid 3px #ff77aa;
@@ -48,6 +52,9 @@
 .buttons__green{
   border: solid 3px #11dd55;
   color:#11dd55;
+}
+.is_active{
+  display: none;
 }
 
 @media(max-width:900px){

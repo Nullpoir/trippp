@@ -4,6 +4,8 @@
 {% block header %}
 <title>Trippp -お問い合わせページ-</title>
 <link rel="stylesheet" type="text/css" href="{% static 'css/question.css' %}">
+<script type="text/javascript" src="{% static 'js/post.js' %}"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -19,7 +21,10 @@
         {{form.mail|add_class:"short-form"}}
         <label class="label">{{form.query.label}}</label>
         {{form.query|add_class:"long-form"}}
-        <button type='submit' class="form__buttons buttons__red" name='action' value='confirm'>確認</button>
+        
+        <div class="form__buttons buttons__green js_modify is_active">修正する</div>
+        <button type='submit' class="form__buttons buttons__blue js_send is_active" name='action' value='send'>送信</button>
+        <div class="form__buttons buttons__red js_confirm">確認</div>
     </form>
 
 {% endblock %}

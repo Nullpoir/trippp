@@ -3,6 +3,7 @@
 {% load widget_tweaks %}
 {% block header %}
 <title>Trippp -記事投稿-</title>
+<script type="text/javascript" src="{% static 'js/post.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'css/postform.css' %}">
 {{ form.media }}
 {% endblock %}
@@ -13,7 +14,7 @@
   投稿画面<br>
 </div>
 
-<form class="content__form" action="" method="post">
+<form class="content__form" action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
     <label class="label">{{form.title.label}}</label>
     {{form.title|add_class:"short-form"}}
@@ -22,11 +23,13 @@
     下書きにする:{{form.is_editing}}
     {{ images.management_form }}
     {% for image in images %}
-        {{ image.as_p }}
+        {{ image.as_p}}
         <hr>
     {% endfor %}
 
-    <button type='submit' class="form__buttons buttons__red" name='action' value='confirm'>確認</button>
+    <div class="form__buttons buttons__green js_modify is_active">修正する</div>
+    <button type='submit' class="form__buttons buttons__blue js_send is_active" name='action' value='send'>送信</button>
+    <div class="form__buttons buttons__red js_confirm">確認</div>
 </form>
 
 {% endblock %}
