@@ -21,6 +21,7 @@
     <label class="label">{{form.script.label}}</label>
     {{form.script|add_class:"long-form"}}
     下書きにする:{{form.is_editing}}
+
     {{ images.management_form }}
     {% for image in images %}
         {{ image.as_p}}

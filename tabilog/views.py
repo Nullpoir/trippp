@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponseRedirect
+from django.shortcuts import render,HttpResponseRedirect,get_object_or_404
 from .forms import TabilogPostingForm,FileFormset
 from django.contrib.auth.decorators import login_required
 from tabilog.models import tabilog
@@ -73,25 +73,19 @@ def tabilog_update(request,user_pk,tabilog_pk):
     req_user = request.user
 
     if req_user.pk == user_pk or req_user.is_superuser:
-        if request.method != "POST":
-            my_post=tabilog.objects.get(pk=tabilog_pk)
-            form_context={
-                "title":my_post.title,
-                "script":my_post.script
-            }
-            edit_form=TabilogPostingForm(form_context)
-            formset = FileFormset(request.POST or None, files=request.FILES or None, instance=my_post)
-            context={"form":edit_form,"formset":formset}
-            return render(request,"tabilog/postform.html",context)
-        elif request.method == "POST":
-            username=User.objects.get(pk=request.user.id).nickname
-            draft=tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,script=request.POST["script"])
-            formset = FileFormset(request.POST, files=request.FILES, instance=draft)
-            if formset.is_valid():
-                draft.save()
-                formset.save()
-                return HttpResponseRedirect("/tabilog/post_done")
+        post = get_object_or_404(tabilog, pk=tabilog_pk)
+        form = TabilogPostingForm(request.POST or None, instance=post)
+        formset = FileFormset(request.POST or None, files=request.FILES or None, instance=post)
+        if request.method == 'POST' and form.is_valid() and formset.is_valid():
+            form.save()
+            formset.save()
+            return HttpResponseRedirect("/tabilog/post_done")
 
+        context = {
+            'form': form,
+            'images': formset
+        }
 
+        return render(request, 'tabilog/postform.html', context)
     else:
         return HttpResponseRedirect("/account/login")
