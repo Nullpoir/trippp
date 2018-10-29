@@ -2,10 +2,12 @@
 {% load static %}
 {% block header %}
 <title>Trippp -{{tabilog.title}}-</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.4/plugins/object-fit/ls.object-fit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.4/lazysizes.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'css/tabilog.css' %}">
 {% endblock %}
 
 {% block content %}
   <div class="content__pubdate">{{tabilog.pub_date}}</div>
-  {{tabilog.body | safe}}
+  {{tabilog.content | safe}}
 {% endblock %}

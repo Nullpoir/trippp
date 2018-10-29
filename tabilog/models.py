@@ -8,5 +8,6 @@ class tabilog(models.Model):
     author=models.CharField(max_length=100)
     user_pk=models.IntegerField()
     body=HTMLField("content")
+    content=HTMLField("content")
     def __str__(self):
         return self.title

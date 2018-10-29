@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
-
+from .parser import parse
 # Create your views here.
 User=get_user_model()
 
@@ -52,6 +52,7 @@ def tabilog_update(request,user_pk,tabilog_pk):
                 my_post=tabilog.objects.get(pk=tabilog_pk)
                 my_post.title=request.POST["title"]
                 my_post.body=request.POST["body"]
+                my_post.content=parse(request.POST["body"])
                 my_post.save()
 
                 return HttpResponseRedirect("/tabilog/post_done")
@@ -87,7 +88,7 @@ def TabilogPost(request):
             return render(request,"tabilog/postform_confirm.html",context)
         elif request.POST["action"] == "send":
             username=User.objects.get(pk=request.user.id).nickname
-            new_tabilog = tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,body=request.POST["body"])
+            new_tabilog = tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,body=request.POST["body"],content=parse(request.POST["body"]))
             new_tabilog.save()
 
             return HttpResponseRedirect("/tabilog/post_done")

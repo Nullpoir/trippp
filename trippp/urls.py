@@ -18,6 +18,8 @@ from django.urls import path,include
 from account.views import Top
 import article.views as article_view
 from django.core.cache import cache
+import trippp.settings as conf
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +29,7 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('docs/<int:pk>',article_view.doc_show_ws,name="trippp_doc_show"),
     path('tabilog/',include("tabilog.urls")),
+    path('api/',include("api.urls")),
 ]
+if conf.DEBUG:
+    urlpatterns += static(conf.MEDIA_URL, document_root=conf.MEDIA_ROOT)

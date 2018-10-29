@@ -39,8 +39,9 @@ if PROJECT_ROOT == "/srv/http":
 else:
     DEBUG = True
 ALLOWED_HOSTS = ["*"]
-
 AUTH_USER_MODEL = "account.User"
+
+
 
 # Application definition
 
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
     'tinymce',
     'widget_tweaks',
     'article.apps.ArticleConfig',
+    'api.apps.ApiConfig',
     'tabilog.apps.TabilogConfig',
 ]
 
@@ -70,31 +72,108 @@ TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
     'width': '100%',
     'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 20,
-    'selector': 'textarea',
     'theme': 'modern',
     'plugins': '''
-            textcolor save link image media preview  contextmenu
-            table lists fullscreen  insertdatetime  nonbreaking
-            contextmenu directionality searchreplace wordcount visualblocks
-            visualchars code fullscreen autolink lists  charmap print  hr
-            anchor pagebreak imagetools
-            ''',
+    textcolor save link image media preview  contextmenu
+    table lists fullscreen  insertdatetime  nonbreaking
+    contextmenu directionality searchreplace wordcount fullscreen autolink lists  charmap print  hr
+    anchor pagebreak imagetools paste code
+    ''',
     'toolbar1': '''
-            fullscreen preview bold italic underline | fontselect,
-            fontsizeselect  | forecolor backcolor | alignleft alignright |
-            aligncenter alignjustify | indent outdent | bullist numlist table |
-            | link image media imagetools|
-            ''',
-    'toolbar2': '''
-            visualblocks visualchars |
-            charmap hr pagebreak nonbreaking anchor |
-            ''',
-    'contextmenu': 'formats | link imagetools',
+    fullscreen preview bold italic underline | forecolor backcolor | alignleft alignright |
+    aligncenter alignjustify | indent outdent code | searchreplace  table |
+    | link image |
+    ''',
+    'contextmenu': 'formats | link image',
     'menubar': False,
-    'statusbar': False,
+    'statusbar':True,
+    'custom_undo_redo_levels': 20,
+    'automatic_upload':True,
+    'selector': 'textarea',
+    'paste_data_images':False,
+    'images_upload_credentials': False,
+    'relative_urls' : False,
+    'force_p_newlines' : False,
+    'force_br_newlines' : True,
+    'forced_root_block' : 'div',
+    'element_format':'html',
+    'content_css':'/static/css/tabilog.css',
 
     }
+
+TINYMCE_CALLBACKS={
+
+    'images_upload_handler':"""
+    function (blobInfo, success, failure) {
+        var xhr, formData;
+        var name;
+        name='csrftoken'
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        var csrftoken =  cookieValue;
+        xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.open('POST', '/api/image_post/');
+        xhr.setRequestHeader("X-CSRFToken",csrftoken)
+
+        xhr.onload = function() {
+          var json;
+
+          if (xhr.status != 200) {
+            failure('HTTP Error: ' + xhr.status);
+            return;
+          }
+
+          json = JSON.parse(xhr.responseText);
+
+          if (!json || typeof json.location != 'string') {
+            failure('Invalid JSON: ' + xhr.responseText);
+            return;
+          }
+          success(json.location);
+        };
+
+        formData = new FormData();
+        formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+        xhr.send(formData);
+        }
+        """,
+        "init_instance_callback": """
+        function(editor){
+          	editor.on('NodeChange', function (e) {
+              if(e.element.tagName === "IMG" && e.element.className != "lazyload"){
+                e.element.className="lazyload"
+              }});
+
+            editor.on('KeyDown', function (e) {
+            console.log("keydown fired",e.keyCode);
+                if (e.keyCode == 8 || e.keyCode == 46) {
+                    console.log("delete ");
+                    var selectedNode = editor.selection.getNode();
+                    console.log(selectedNode);
+                    if (selectedNode.nodeName == 'img') {
+                            console.log("delete detected");
+                    }
+                }
+            });
+
+          }
+
+
+          """,
+}
+
+APPEND_SLASH=False
 
 MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
@@ -104,7 +183,7 @@ MIDDLEWARE = [
     #'django.middleware.common.CommonMiddleware',  # Django Cache
     #'django.middleware.cache.FetchFromCacheMiddleware',  # Django Cache
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -190,3 +269,6 @@ STATICFILES_FINDERS = (
 )
 '''
 STATIC_ROOT=os.path.join(PROJECT_ROOT,"static")
+
+MEDIA_URL="/media/"
+MEDIA_ROOT=BASE_DIR+"/media/"

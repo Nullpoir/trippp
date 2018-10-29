@@ -1,3 +1,8 @@
+.lazyload,.lazyloaded{
+  max-width:100%;
+  height:auto;
+}
+
 .root__content{
     padding:10px 5%;
 }
