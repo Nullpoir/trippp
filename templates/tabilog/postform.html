@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/postform.css' %}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.4/lazysizes.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.4/plugins/object-fit/ls.object-fit.min.js"></script>
+<script type="text/javascript" src="{% static 'js/post.js' %}"></script>
 {{ form.media }}
 {% endblock %}
 
@@ -21,7 +22,10 @@
     {{form.title|add_class:"short-form"}}
     <label class="label">{{form.body.label}}</label>
     {{form.body|add_class:"long-form"}}
-    <button type='submit' class="form__buttons buttons__red" name='action' value='confirm'>確認</button>
+
+    <div class="form__buttons buttons__green js_modify is_active">修正する</div>
+    <button type='submit' class="form__buttons buttons__blue js_send is_active" name='action' value='send'>送信</button>
+    <div class="form__buttons buttons__red js_confirm">確認</div>
 </form>
 
 {% endblock %}

@@ -1,8 +1,3 @@
-.lazyload,.lazyloaded{
-  max-width:100%;
-  height:auto;
-}
-
 .root__content{
     padding:10px 5%;
 }
@@ -39,10 +34,18 @@
   height:50px;
   border-radius: 10px;
   background:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 .buttons__red{
   border: solid 3px #ff77aa;
   color:#ff77aa;
+}
+
+.is_active{
+  display: none;
 }
 
 .buttons__blue{

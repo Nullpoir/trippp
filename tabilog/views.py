@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponseRedirect
+from django.shortcuts import render,HttpResponseRedirect,get_object_or_404
 from .forms import TabilogPostingForm
 from django.contrib.auth.decorators import login_required
 from tabilog.models import tabilog
@@ -29,40 +29,6 @@ class post_history(UserPassesTestMixin,TemplateView):
         tabilog_output=paginator.get_page(page)
         return self.render_to_response({"lists":tabilog_output})
 
-def tabilog_update(request,user_pk,tabilog_pk):
-    req_user = request.user
-
-    if req_user.pk == user_pk or req_user.is_superuser:
-        if request.method != "POST":
-            my_post=tabilog.objects.get(pk=tabilog_pk)
-            form_context={
-                "title":my_post.title,
-                "body":my_post.body
-            }
-
-            edit_form=TabilogPostingForm(form_context)
-            context={"form":edit_form}
-            return render(request,"tabilog/postform.html",context)
-        else:
-            if request.POST["action"] == "confirm":
-                context={"form":TabilogPostingForm(request.POST)}
-                return render(request,"tabilog/postform_confirm.html",context)
-            elif request.POST["action"] == "send":
-                username=User.objects.get(pk=request.user.id).nickname
-                my_post=tabilog.objects.get(pk=tabilog_pk)
-                my_post.title=request.POST["title"]
-                my_post.body=request.POST["body"]
-                my_post.content=parse(request.POST["body"])
-                my_post.save()
-
-                return HttpResponseRedirect("/tabilog/post_done")
-            elif request.POST["action"] == "modify":
-                context={"form":TabilogPostingForm(request.POST)}
-                return render(request,"tabilog/postform.html",context)
-
-    else:
-        return HttpResponseRedirect("/account/login")
-
 def tabilog_list_show(request):
     if request.method == "POST":
         pass
@@ -82,23 +48,39 @@ def tabilog_show(request,number):
 
 @login_required
 def TabilogPost(request):
-    if request.method == "POST":
-        if request.POST["action"] == "confirm":
-            context={"form":TabilogPostingForm(request.POST)}
-            return render(request,"tabilog/postform_confirm.html",context)
-        elif request.POST["action"] == "send":
+    form=TabilogPostingForm(request.POST or None)
+    context={'form':form}
+
+    if request.POST:
+        if request.POST and form.is_valid():
             username=User.objects.get(pk=request.user.id).nickname
-            new_tabilog = tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,body=request.POST["body"],content=parse(request.POST["body"]))
-            new_tabilog.save()
+            draft=tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,body=request.POST["body"],content=parse(request.POST["body"]))
+            draft.save()
+            return HttpResponseRedirect("/tabilog/post_done/")
 
-            return HttpResponseRedirect("/tabilog/post_done")
-        elif request.POST["action"] == "modify":
-            context={"form":TabilogPostingForm(request.POST)}
-            return render(request,"tabilog/postform.html",context)
-
-    else:
-        context={"form":TabilogPostingForm()}
-        return render(request,"tabilog/postform.html",context)
+    return render(request,"tabilog/postform.html",context)
 
 def tabilog_delete(request):
     pass
+def tabilog_update(request,user_pk,tabilog_pk):
+    req_user = request.user
+
+    if req_user.pk == user_pk or req_user.is_superuser:
+        post = get_object_or_404(tabilog, pk=tabilog_pk)
+        form = TabilogPostingForm(request.POST or None, instance=post)
+
+        if request.method == 'POST' and form.is_valid():
+            post.title=request.POST["title"]
+            post.body=request.POST["body"]
+            post.content=parse(request.POST["body"])
+            post.save()
+
+            return HttpResponseRedirect("/tabilog/post_done/")
+
+        context = {
+            'form': form
+        }
+
+        return render(request, 'tabilog/postform.html', context)
+    else:
+        return HttpResponseRedirect("/account/login")

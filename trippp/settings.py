@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'article.apps.ArticleConfig',
     'api.apps.ApiConfig',
     'tabilog.apps.TabilogConfig',
+    'auto_py.apps.AutoPyConfig',
 ]
 
 CACHES = {
@@ -154,26 +155,13 @@ TINYMCE_CALLBACKS={
               if(e.element.tagName === "IMG" && e.element.className != "lazyload"){
                 e.element.className="lazyload"
               }});
-
-            editor.on('KeyDown', function (e) {
-            console.log("keydown fired",e.keyCode);
-                if (e.keyCode == 8 || e.keyCode == 46) {
-                    console.log("delete ");
-                    var selectedNode = editor.selection.getNode();
-                    console.log(selectedNode);
-                    if (selectedNode.nodeName == 'img') {
-                            console.log("delete detected");
-                    }
-                }
-            });
-
           }
 
 
           """,
 }
 
-APPEND_SLASH=False
+APPEND_SLASH=True
 
 MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
