@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
-from .parser import parse
+from .parser import parse,alldel,allsave
 # Create your views here.
 User=get_user_model()
 
@@ -34,7 +34,7 @@ def tabilog_list_show(request):
         pass
     else:
         tabilog_all=tabilog.objects.all()
-        paginator=Paginator(tabilog_all,1)
+        paginator=Paginator(tabilog_all,10)
         page = request.GET.get('page')
         tabilog_output=paginator.get_page(page)
 
@@ -54,19 +54,30 @@ def TabilogPost(request):
     if request.POST:
         if request.POST and form.is_valid():
             username=User.objects.get(pk=request.user.id).nickname
+            print(request.POST)
+            print("parse now")
             draft=tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,body=request.POST["body"],content=parse(request.POST["body"]))
             draft.save()
             return HttpResponseRedirect("/tabilog/post_done/")
 
     return render(request,"tabilog/postform.html",context)
 
-def tabilog_delete(request):
-    pass
+def tabilog_delete(request,tabilog_pk):
+    post = get_object_or_404(tabilog, pk=tabilog_pk)
+
+    if req_user.pk == post.user_pk or req_user.is_superuser:
+        alldel(post.body)
+        post.delete();
+        return render("aaa");
+    else:
+        return HttpResponseRedirect("/")
+
 def tabilog_update(request,user_pk,tabilog_pk):
     req_user = request.user
 
     if req_user.pk == user_pk or req_user.is_superuser:
         post = get_object_or_404(tabilog, pk=tabilog_pk)
+        alldel(post.body)
         form = TabilogPostingForm(request.POST or None, instance=post)
 
         if request.method == 'POST' and form.is_valid():

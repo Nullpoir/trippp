@@ -1,11 +1,32 @@
-.content__wrapper__content{
+.content__list{
   display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  flex-direction: column;
+  flex-direction:column;
+
 }
 
+.tabilog-card{
+  width:100%;
+  height:auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom:10px;
+  text-decoration: none;
+  color: #010101;
+}
+.tabilog-card:hover{
+  opacity: 0.7;
+}
+.tabilog-card__thumbanail{
+  flex: none;
+  height: 100px;
+  width: 100px;
+  border: solid 1px gray ;
+  margin-right: 20px;
+}
+.tabilog-card__description{
+
+}
 .content__list{
   display: flex;
   display: -webkit-box;
@@ -14,11 +35,9 @@
   justify-content: center;
 }
 
-.content__pagination{
+.pagination{
   display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   justify-content: center;
+  align-items: center;
 
 }

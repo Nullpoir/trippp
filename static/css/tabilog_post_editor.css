@@ -1,0 +1,20 @@
+.content__pubdate{
+  width:100%;
+  text-align: right;
+}
+.root__content{
+    padding:10px 5% 10px 5%;
+}
+img{
+  max-width:100%;
+  height:auto;
+}
+@media(max-width:900px){
+  .root__content{
+    padding:5px 2% 5px 2%;
+    width:96%;
+    height:auto;
+    flex:1;
+  }
+
+}

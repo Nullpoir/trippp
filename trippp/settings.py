@@ -74,6 +74,13 @@ TINYMCE_DEFAULT_CONFIG = {
     'width': '100%',
     'cleanup_on_startup': True,
     'theme': 'modern',
+    'mobile':"""
+            {
+                theme:mobile,
+                height: 360,
+                width: 100%,
+            }
+    """,
     'plugins': '''
     textcolor save link image media preview  contextmenu
     table lists fullscreen  insertdatetime  nonbreaking
@@ -98,7 +105,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'force_br_newlines' : True,
     'forced_root_block' : 'div',
     'element_format':'html',
-    'content_css':'/static/css/tabilog.css',
+    'content_css':'/static/css/tabilog_post_editor.css',
 
     }
 
@@ -149,16 +156,6 @@ TINYMCE_CALLBACKS={
         xhr.send(formData);
         }
         """,
-        "init_instance_callback": """
-        function(editor){
-          	editor.on('NodeChange', function (e) {
-              if(e.element.tagName === "IMG" && e.element.className != "lazyload"){
-                e.element.className="lazyload"
-              }});
-          }
-
-
-          """,
 }
 
 APPEND_SLASH=True

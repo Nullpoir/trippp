@@ -1,6 +1,6 @@
 {{ user.username }} 様
 
 この度はTripppへのユーザー登録、誠にありがとうございます。登録はまだ完了しておりませんので、下記URLより本登録の手続きをお願いいたします。
-{ protocol}}://{{ domain }}{% url 'account:user_create_complete' token %}
+{{ protocol}}://{{ domain }}{% url 'account:user_create_complete' token %}
 
 今後共Tripppをよろしくお願いします。

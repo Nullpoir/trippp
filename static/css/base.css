@@ -1,16 +1,24 @@
+/*
+	Basis CSS of Trippp.
+	It was created by Naoto Miyakawa.
+	Since 2017.11
+*/
+
+/*Global CSS*/
 @font-face {
 	font-family: 'Trippp_font';
 	src: url(/static/font/Parisienne-Regular.ttf);
 }
+* {
+  box-sizing: border-box;
+}
 
 #trippp{
   font-size: 10px;
-  box-sizing: border-box;
   height: 100%;
+	overflow-x: hidden;
 }
-#trippp a{
-  text-decoration: none;
-}
+
 #trippp h1{
 	border-left:solid 3px #55ccff;
 	background-color:#eee;
@@ -22,26 +30,25 @@
 	border-bottom:solid 2px #55ccff;
 	font-weight: normal;
 }
-.content a{
-  color: #22aadd;
-}
-.content a:hover{
-  opacity: 0.7;
+.nodeclink{
+	text-decoration: none;
 }
 #root{
   margin:0;
   padding-top:60px;
   display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   flex-direction: column;
   min-height: 100%;
+	max-width: 100%;
   font-size: 1.6rem;
 	letter-spacing: 0.02rem;
 	line-height: 1.42857;
   background-color: #fefefe;
 }
+
+/*Global CSS*/
+
+/*Header CSS description*/
 
 .root__header{
   position:fixed;
@@ -51,60 +58,49 @@
   width:100%;
   height:auto;
   border-bottom: solid 1px #aaa;
+	display: flex;
+	justify-content: center;
+  background-color: #fefefe;
 }
 .header{
   display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  padding:0 6%;
-  width:88%;
+	justify-content: space-between;
+	align-items: center;
+	padding:0 100px;
+  width:100%;
   height:60px;
   font-size: 4rem;
   color:#010101;
-  background-color: #fefefe;
 }
 
-.header__title{
-  width:30%;
-  display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  justify-content: right;
-  align-items: center;
-  justify-content: left;
-}
-.header__title__logo{
+.header__logo{
   text-decoration: none;
   font-family: 'Trippp_font';
   color:#000;
 }
-.header__title__logo:hover{
+.header__logo:hover{
   color:#55ccff !important;
 }
 .header__menu{
   display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  width:70%;
+  width:auto;
+	height: 2rem;
   font-size: 2rem;
-
 }
 .sp-menu,.sp-menu__list{
   display: none;
 }
 
-.header__menu__list{
-  margin:0 0.5%;
+.header__menu-list{
+  margin-left:1rem;
   text-decoration: none;
-  color:#000;
+  color:#000 !important;
 	position: relative;
 }
-.header__menu__list::after{
+.header__menu-list::after{
 	background-color: #55ccff;
   bottom: 0;
   content: '';
@@ -115,99 +111,149 @@
   transition: .3s all;
   width: 0;
 }
-.header__menu__list:hover:after{
+.header__menu-list:hover:after{
   width: 100%;
 }
 
+/*Header CSS description*/
 
+/*Content CSS description*/
 .root__content{
-  padding:10px 5%;
-  width:90%;
-  height:auto;
+  padding:10px 0;
+  width:100%;
   flex:1;
 }
 .content{
   color:#010101;
-  width:98%;
-  padding:1%;
+  width:1200px;
+  padding:0;
+	margin: 0 auto;
   background-color: #fefefe;
 	font-size: 1.6rem;
 }
 
-.footer{
-  display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  justify-content: space-between;
-  background-color:#333;
-  border-top:solid 1px #aaa;
-  height:280px;
-  padding:20px 5%;
-	flex-wrap: wrap;
-	position: relative;
-}
-.footer__left,.footer__center,.footer__right{
-  width:33%;
-  height:auto;
-  display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-	flex-wrap: wrap;
-  justify-content: center;
-	flex-direction: column;
-}
-.footer__title{
-  width:100%;
-	height:4rem;
-  text-align: center;
-  font-size: 2.5rem;
-  color:#fefefe;
-  font-weight: bold;
-}
-.footer_items-container{
-	display: flex;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-	flex-wrap: wrap;
-	flex-direction: column;
-	align-items: center;
-	flex:1
-}
-.icon-set{
-  font-size: 4.0rem;
-  width:100%;
-  text-align:center;
-}
-.line{
-  color: #00B900 !important;
-}
-.twitter{
-  color: #1da1f2 !important;
-}
-.youtube{
-  color: #DA1725 !important;
-}
-.footer__links{
-  width:100%;
-  font-size:2rem;
-  text-align: center;
+/*Content CSS description*/
 
-}
-.footer__links a:hover{
-	color: #55ccff !important;
-}
-.footer__copyright{
-  color:#888;
-  width:90%;
+/*Footer CSS description*/
+
+.footer{
+	width:100%;
+	height:300px;
 	display: flex;
 	justify-content: center;
-	position: absolute;
-	bottom:10px;
+	background: #333;
+}
+.footer-inner{
+	width:1200px;
+	flex: none;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	color: #fefefe;
+}
+.footer__left{
+	width:66.6%;
+	flex: none;
+	height:240px;
+	padding-top:30px;
+}
+.footer__right{
+	width:33.3%;
+	flex: none;
+	height:240px;
+	padding-top:30px;
+}
+.footer__snsfield{
+	width:100%;
+	height:auto;
+	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 2rem;
+	display: flex;
+	justify-content: left;
+}
+.footer__sns-icon{
+	margin-right: 25px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #333;
+	font-size: 2.4rem;
+}
+.footer__itemfield{
+	display: flex;
+	flex-direction: column;
+	align-items: right;
+	flex-wrap: wrap;
+	width: 100%;
+	height:70px;
+	margin-top: 30px;
 }
 
+.footer__itemfield-links{
+	width: 50%;
+	margin-bottom: 10px;
+}
+.footer__itemfield-links:before{
+	content: "・";
+}
+.footer__titlefield{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+	font-weight: bold;
+}
+.footer__description{
+	margin-top:30px;
+	display: flex;
+	justify-content: center;
+}
+.footer__logo{
+	margin-top: 30px;
+	flex: none;
+	width:100%;
+	height: 50px;
+}
+.footer__logo-inner{
+	display: flex;
+	margin:0 auto;
+	justify-content: center;
+	border-radius: 10px;
+	align-items: center;
+	width:50%;
+	height:100%;
+	color:#010101;
+	background-color: white;
+	font-family: 'trippp_font';
+	font-size: 4rem;
+}
+.footer__copyright{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.3rem;
+	height: 20px;
+	width: 100%;
+	border-top: dotted 2px gray;
+}
+
+/*Footer CSS description*/
+
+@media(max-width:1300px){
+	.content{
+		width:850px;
+	}
+	.footer-inner{
+		width:850px;
+	}
+}
+
+/*Smart phone CSS*/
 @media(max-width:900px){
 
   #root{
@@ -227,25 +273,17 @@
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    padding:0 4%;
-    width:92%;
+		justify-content: center;
+		padding:0 10px;
+    width:100%;
     height:50px;
     font-size: 3rem;
     color:#010101;
     background-color: #fefefe;
   }
 
-  .header__title{
-    width:30%;
-    display: flex;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    justify-content: right;
-    align-items: center;
-    justify-content: left;
-  }
-  .header__title__logo{
+
+  .header__logo{
     text-decoration: none;
     font-family: 'Trippp_font';
     color:#000;
@@ -254,7 +292,7 @@
     color:#55ccff !important;
   }
 
-  .header__menu__list{
+  .header__menu-list{
     display: none;
   }
   .sp-menu{
@@ -301,7 +339,7 @@
 		opacity: 0.9;
 		z-index: 201;
 	}
-  .sp-menu__list.is_active{
+  .sp-menu__list.is_sp-active{
 		transform-origin: right;
 		transform:rotateY(0deg);
 		transition: all 0.3s ease-out;
@@ -314,100 +352,132 @@
     text-align: center;
     padding:0.5rem 0;
   }
-  .header__menu__list:hover{
+  .header__menu-list:hover{
     margin-bottom: -3px;
     border-bottom:solid 3px #ffcc55;
   }
 
 
   .root__content{
-    padding:5px 2%;
-    width:96%;
+    width:100%;
     height:auto;
     flex:1;
   }
   .content{
     color:#010101;
-    width:96%;
-    padding:2%;
+    width:90%;
     background-color: #fefefe;
   }
 
-  .footer{
-    background-color:#333;
-    border-top:solid 1px #aaa;
-    height:auto;
-    padding:20px 4%;
-    width:92%;
-    position: relative;
-    display: block;
-  }
-  .footer__left{
-    width:100%;
-    height:auto;
-    display: flex;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    flex-direction: inherit;
-    justify-content: center;
-    flex-wrap:wrap;
-  }
-  .footer__center,.footer__right{
-    width:100%;
-    height:auto;
-    display: flex;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .footer__title{
-    width:100%;
-    text-align: center;
-    font-size: 1.8rem;
-    color:#fefefe;
-    font-weight: bold;
-    padding-bottom: 1rem;
-  }
-
-	.footer_items-container{
+	.footer{
+		width:100%;
+		height:500px;
 		display: flex;
-	  display: -webkit-box;
-	  display: -webkit-flex;
-	  display: -ms-flexbox;
-		flex-direction: row;
 		justify-content: center;
-		flex:1
+		background: #333;
+	}
+	.footer-inner{
+		width:90%;
+		flex: none;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		color: #fefefe;
+	}
+	.footer__left{
+		width:100%;
+		flex: none;
+		height:200px;
+		padding-top:30px;
+	}
+	.footer__right{
+		width:100%;
+		flex: none;
+		height:240px;
+		padding-top:30px;
+		border-top: dotted 2px gray;
+	}
+	.footer__snsfield{
+		width:100%;
+		height:auto;
+		margin-bottom: 10px;
+		font-weight: bold;
+		font-size: 2rem;
+		display: flex;
+		justify-content: center;
+
+	}
+	.footer__sns-icon{
+		margin-right: 12px;
+		margin-left: 12px;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background: #fff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #333;
+		font-size: 2.4rem;
+	}
+	.footer__itemfield{
+		display: flex;
+		flex-direction: column;
+		align-items: right;
+		flex-wrap: wrap;
+		width: 100%;
+		height:auto;
+		margin-top: 30px;
 	}
 
-  .icon-set{
-    font-size: 4rem;
-    width:auto;
-    margin:0 3%;
-    text-align:center;
-  }
-  .line{
-    color: #00B900 !important;
-  }
-  .twitter{
-    color: #1da1f2 !important;
-  }
-  .youtube{
-    color: #DA1725 !important;
-  }
-  .footer__links{
-    width:100%;
-    font-size:1.6rem;
-    text-align: center;
-    color: #fefefe;
-  }
-  .footer__copyright{
-    text-align: center;
-    color:#888;
-    width:90%;
-    position:absolute;
-    bottom: 0;
-  }
+	.footer__itemfield-links{
+		width: 100%;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+	.footer__itemfield-links:before{
+		content: "・";
+	}
+	.footer__titlefield{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 2rem;
+		font-weight: bold;
+	}
+	.footer__description{
+		margin-top:30px;
+		display: flex;
+		justify-content: center;
+	}
+	.footer__logo{
+		margin-top: 30px;
+		flex: none;
+		width:100%;
+		height: 50px;
+	}
+	.footer__logo-inner{
+		display: flex;
+		margin:0 auto;
+		justify-content: center;
+		border-radius: 10px;
+		align-items: center;
+		width:50%;
+		height:100%;
+		color:#010101;
+		background-color: white;
+		font-family: 'trippp_font';
+		font-size: 4rem;
+	}
+	.footer__copyright{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.3rem;
+		height: 20px;
+		width: 100%;
+		border-top: dotted 2px gray;
+	}
+
 }
+/*Smart phone CSS*/

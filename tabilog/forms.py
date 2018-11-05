@@ -1,6 +1,18 @@
 from django import forms
 from .models import tabilog as TabilogDraft
 
+OPTION_CHOICES = (
+    ('title', 'タイトル'),
+    ('tag', 'タグ'),
+    ('author','著者名')
+)
+
+ORDER_CHOICES = (
+    ("newer",'新しい順'),
+    ("older",'古い順'),
+    ("popular",'人気順')
+)
+
 class TabilogPostingForm(forms.ModelForm):
     """ユーザー記事投稿"""
 
@@ -12,3 +24,7 @@ class TabilogPostingForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+
+class TabilogSearchForm(forms.Form):
+    keywords=forms.CharField(max_length=200)
+    option=forms.ChoiceField(label="検索条件",choices=OPTION_CHOICES)

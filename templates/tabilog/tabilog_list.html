@@ -3,34 +3,45 @@
 
 {% block header %}
 <title>Trippp -たびろぐリスト-</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.4/plugins/object-fit/ls.object-fit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.4/lazysizes.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'css/tabilog_list.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="content__wrapper__content">
+
   <div class="content__list">
   {% for list in lists %}
 
-      <a href="/tabilog/articles/{{ list.pk }}">{{ list.title}}</a>
+      <a class="tabilog-card" href="/tabilog/articles/{{ list.pk }}">
+        <div class="tabilog-card__thumbanail"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==" alt="NoImages"></img></div>
+        <div class="tabilog-card__description">
+          記事名　{{ list.title}}<br>
+          著　者　{{list.author}}<br>
+          投稿日　{{list.pub_date}}
+
+        </div>
+      </a>
+
   {% endfor %}
   </div>
 
-  <div class="content__pagination">
-      <span class="pagination__step-links">
+  <div class="pagination">
+
           {% if lists.has_previous %}
               <a href="?page=1">&laquo; first</a>
               <a href="?page={{ lists.previous_page_number }}">previous</a>
           {% endif %}
 
-          <span class="pagination_current">
+          <div class="pagination_current">
               Page {{ lists.number }} of {{ lists.paginator.num_pages }}.
-          </span>
+          </div>
 
           {% if lists.has_next %}
-              <a href="?page={{ lists.next_page_number }}">next</a>
-              <a href="?page={{ lists.paginator.num_pages }}">last &raquo;</a>
+              <a href="?page={{ lists.next_page_number }}">次のページ</a>
+              <a href="?page={{ lists.paginator.num_pages }}">前のページ </a>
           {% endif %}
-      </span>
+
   </div>
-</div>
+
 {% endblock %}

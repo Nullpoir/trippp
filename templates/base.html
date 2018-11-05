@@ -24,13 +24,15 @@
 <body id="root">
   <div class="root__header">
     <div class="header">
-      <div class="header__title"><a href="/"class="header__title__logo">Trippp</a></div>
+      <a href="/"class="header__logo">Trippp</a>
       <div class="header__menu">
+        <a class="header__menu-list nodeclink" href="/tabilog/">記事閲覧</a>
       {% if user.is_authenticated %}
-        <a class="header__menu__list" href="{% url 'account:mypage' user.pk %}">マイページ</a>
-        <a class="header__menu__list" href="{% url 'account:logout' %}">ログアウト</a>
+        <a class="header__menu-list nodeclink" href="{% url 'account:mypage' user.pk %}">マイページ</a>
+        <a class="header__menu-list nodeclink" href="/tabilog/post">投稿する</a>
+        <a class="header__menu-list nodeclink" href="{% url 'account:logout' %}">ログアウト</a>
       {% else %}
-        <a class="header__menu__list" href="{% url 'account:login' %}">ログイン</a>
+        <a class="header__menu-list nodeclink" href="{% url 'account:login' %}">ログイン</a>
       {% endif %}
         <div class="sp-menu">
           <i class="fas fa-bars"></i>
@@ -40,11 +42,13 @@
   </div>
   <div class="sp-menu__list">
     <div class="list__area">
+      <a class="sp-menu__list__item nodeclink" href="/tabilog/">記事閲覧</a>
       {% if user.is_authenticated %}
-        <a class="sp-menu__list__item" href="{% url 'account:mypage' user.pk %}">マイページ</a>
-        <a class="sp-menu__list__item" href="{% url 'account:logout' %}">ログアウト</a>
+        <a class="sp-menu__list__item nodeclink" href="{% url 'account:mypage' user.pk %}">マイページ</a>
+        <a class="sp-menu__list__item nodeclink" href="/tabilog/post">投稿する</a>
+        <a class="sp-menu__list__item nodeclink" href="{% url 'account:logout' %}">ログアウト</a>
       {% else %}
-        <a class="sp-menu__list__item" href="{% url 'account:login' %}">ログイン</a>
+        <a class="sp-menu__list__item nodeclink" href="{% url 'account:login' %}">ログイン</a>
       {% endif %}
     </div>
   </div>
@@ -56,32 +60,45 @@
   </div>
 
   <div class="footer">
-    <div class="footer__left">
-      <span class="footer__title">Social Media</span>
-      <div class="footer_items-container">
-        <span class="icon-set"><a class="line" href="https://line.me/R/ti/p/%40hhu6441"><i class="fab fa-line"></i></a></span>
-        <span class="icon-set"><a class="twitter" href="https://twitter.com/trippp_official"><i class="fab fa-twitter-square"></i></a></span>
-        <span class="icon-set"><a class="youtube" href="https://www.youtube.com/channel/UCjkqXG0Eq08Cx120uigukcQ"><i class="fab fa-youtube-square"></i></a></span>
+    <div class="footer-inner">
+      <div class="footer__left">
+        <div class="footer__snsfield">
+          <a class="footer__sns-icon nodeclink" href="">
+						<i class="fab fa-line"></i>
+					</a>
+					<a class="footer__sns-icon nodeclink" href="">
+						<i class="fab fa-facebook"></i>
+					</a>
+					<a class="footer__sns-icon nodeclink" href="">
+						<i class="fab fa-twitter"></i>
+    		  </a>
+        </div>
+
+        <div class="footer__itemfield">
+          <a class="footer__itemfield-links nodeclink">Trippp-Web-Serviceについて</a>
+          <a class="footer__itemfield-links nodeclink">ヘルプ</a>
+          <a class="footer__itemfield-links nodeclink">個人情報保護方針</a>
+        </div>
       </div>
-    </div>
-    <div class="footer__center">
-      <span class="footer__title">About us</span>
-      <div class="footer_items-container">
-        <span class="footer__links"><a style="color:#fefefe;" href="">Profile</a></span>
-        <span class="footer__links"><a style="color:#fefefe;" href="/company/docs/2/">Our mission</a></span>
+      <div class="footer__right">
+        <div class="footer__titlefield">
+          連絡先
+        </div>
+        <div class="footer__description">
+          TEL:090-9294-0168<br>
+          Mail:nullpoir0805@gmail.com<br>
+        </div>
+        <div class="footer__logo">
+          <div class="footer__logo-inner">
+          Trippp
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="footer__right">
-      <span class="footer__title">Notice</span>
-      <div class="footer_items-container">
-        <span class="footer__links"><a style="color:#fefefe;" href="/company/docs/1/">Privacy Policy</a></span>
+      <div class="footer__copyright">
+        © Trippp Since 2018.4.10
       </div>
-    </div>
-    <div class="footer__copyright">
-      Copyright Trippp & Trip Group Since 2018.4.10
     </div>
   </div>
-
 
 </body>
 </html>
