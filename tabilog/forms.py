@@ -28,3 +28,13 @@ class TabilogPostingForm(forms.ModelForm):
 class TabilogSearchForm(forms.Form):
     keywords=forms.CharField(max_length=200)
     option=forms.ChoiceField(label="検索条件",choices=OPTION_CHOICES)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        count=0;
+        for field in self.fields.values():
+            if count == 0:
+                field.widget.attrs['class'] = 'form__text'
+                count+=1
+            else:
+                field.widget.attrs['class'] = 'form__choice'

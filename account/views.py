@@ -48,7 +48,7 @@ class UserCreate(generic.CreateView):
             'protocol': 'https' if self.request.is_secure() else 'http',
             'domain': domain,
             'token': dumps(user.pk),
-            'user': user.nickname,
+            'username': user.nickname,
         }
 
 

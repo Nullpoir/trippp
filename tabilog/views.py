@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponseRedirect,get_object_or_404
-from .forms import TabilogPostingForm
+from .forms import TabilogPostingForm,TabilogSearchForm
 from django.contrib.auth.decorators import login_required
 from tabilog.models import tabilog
 from datetime import datetime
@@ -9,6 +9,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from .parser import parse,alldel,allsave
 # Create your views here.
+PAGE_LIMIT=10
 User=get_user_model()
 
 def post_done(request):
@@ -24,26 +25,49 @@ class post_history(UserPassesTestMixin,TemplateView):
 
     def get(self, request, user_pk):
         my_post=tabilog.objects.all().filter(user_pk=user_pk)
-        paginator=Paginator(my_post,1)
+        paginator=Paginator(my_post,PAGE_LIMIT)
         page = request.GET.get('page')
         tabilog_output=paginator.get_page(page)
         return self.render_to_response({"lists":tabilog_output})
 
 def tabilog_list_show(request):
+    form=TabilogSearchForm()
     if request.method == "POST":
-        pass
+        return HttpResponseRedirect("/tabilog/?keywords="+request.POST["keywords"]+"&option="+request.POST["option"])
+
+    elif "keywords" in request.GET:
+        keywords=request.GET.get("keywords")
+        option=request.GET.get("option")
+        page = request.GET.get('page')
+        context={
+            "keywords":keywords,
+            "option":option
+        }
+        print(context)
+        form=TabilogSearchForm(context)
+        if option == "title":
+            tabilog_all=tabilog.objects.all().filter(title__icontains=keywords)
+            paginator=Paginator(tabilog_all,PAGE_LIMIT)
+            tabilog_output=paginator.get_page(page)
+        elif option == "tag":
+            tabilog_all=tabilog.objects.all().filter(tag__icontains=keywords)
+            paginator=Paginator(tabilog_all,PAGE_LIMIT)
+            tabilog_output=paginator.get_page(page)
+        else:
+            tabilog_all=tabilog.objects.all().filter(author__icontains=keywords)
+            paginator=Paginator(tabilog_all,PAGE_LIMIT)
+            tabilog_output=paginator.get_page(page)
+        return render(request,"tabilog/tabilog_list.html",{"lists":tabilog_output,"form":form,"search_flag":1})
     else:
         tabilog_all=tabilog.objects.all()
-        paginator=Paginator(tabilog_all,10)
+        paginator=Paginator(tabilog_all,PAGE_LIMIT)
         page = request.GET.get('page')
         tabilog_output=paginator.get_page(page)
-
-
-    return render(request,"tabilog/tabilog_list.html",{"lists":tabilog_output})
+        return render(request,"tabilog/tabilog_list.html",{"lists":tabilog_output,"form":form,"search_flag":1})
 
 def tabilog_show(request,number):
     tabilog_render=tabilog.objects.get(pk=number)
-    return render(request,"tabilog/tabilog.html",{"tabilog":tabilog_render})
+    return render(request,"tabilog/tabilog.html",{"tabilog":tabilog_render,"search_flag":0})
 
 
 @login_required

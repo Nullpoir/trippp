@@ -10,8 +10,9 @@
 <div class="content__wrapper__content">
   <div class="content__list">
   {% for list in lists %}
-
+      {{list.pub_date}}　投稿：
       <a href="/tabilog/articles/{{ list.pk }}">{{ list.title}}</a>
+      <a href="/tabilog/edit/{{list.user_pk}}/{{ list.pk }}">編集</a>
   {% endfor %}
   </div>
 

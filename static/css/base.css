@@ -35,7 +35,7 @@
 }
 #root{
   margin:0;
-  padding-top:60px;
+  padding-top:80px;
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -68,8 +68,8 @@
 	align-items: center;
 	padding:0 100px;
   width:100%;
-  height:60px;
-  font-size: 4rem;
+  height:80px;
+  font-size: 4.3rem;
   color:#010101;
 }
 
@@ -87,15 +87,15 @@
   justify-content: flex-end;
   align-items: center;
   width:auto;
-	height: 2rem;
-  font-size: 2rem;
+	height: 2.3rem;
 }
 .sp-menu,.sp-menu__list{
   display: none;
 }
 
 .header__menu-list{
-  margin-left:1rem;
+	font-size: 2.3rem;
+  margin-left:3rem;
   text-decoration: none;
   color:#000 !important;
 	position: relative;
@@ -129,7 +129,7 @@
   padding:0;
 	margin: 0 auto;
   background-color: #fefefe;
-	font-size: 1.6rem;
+	font-size: 2.3rem;
 }
 
 /*Content CSS description*/

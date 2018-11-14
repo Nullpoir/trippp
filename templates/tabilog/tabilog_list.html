@@ -9,6 +9,15 @@
 {% endblock %}
 
 {% block content %}
+  <form class="content__form" action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    {{ field }}
+    {% endfor %}
+
+    <button type="submit" class="">検索</button>
+  </form>
 
   <div class="content__list">
   {% for list in lists %}
@@ -29,8 +38,13 @@
   <div class="pagination">
 
           {% if lists.has_previous %}
+            {% if search_flag == 1 %}
+              <a href="{{ request.get_full_path }}&page=1">&laquo; first</a>
+              <a href="{{ request.get_full_path }}&page={{ lists.previous_page_number }}">previous</a>
+            {% elif search_flag == 0 %}
               <a href="?page=1">&laquo; first</a>
               <a href="?page={{ lists.previous_page_number }}">previous</a>
+            {% endif %}
           {% endif %}
 
           <div class="pagination_current">
@@ -38,8 +52,13 @@
           </div>
 
           {% if lists.has_next %}
+            {% if search_flag == 1 %}
+              <a href="{{ request.get_full_path }}&page={{ lists.next_page_number }}">次のページ</a>
+              <a href="{{ request.get_full_path }}&page={{ lists.paginator.num_pages }}">前のページ </a>
+            {% elif search_flag == 0 %}
               <a href="?page={{ lists.next_page_number }}">次のページ</a>
               <a href="?page={{ lists.paginator.num_pages }}">前のページ </a>
+            {% endif %}
           {% endif %}
 
   </div>
