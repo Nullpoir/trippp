@@ -20,30 +20,33 @@
 }
 
 #trippp h1{
-	border-left:solid 3px #55ccff;
-	background-color:#eee;
-	width:auto;
-	padding-left: 1rem;
+	background-color: #fbfbfb;
+	width:100%;
 	font-weight: normal;
 }
 #trippp h2{
-	border-bottom:solid 2px #55ccff;
+	border-left:solid 3px #55ccff;
 	font-weight: normal;
+	padding-left:1rem;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom:40px;
+	background-color: #fbfbfb;
 }
 .nodeclink{
 	text-decoration: none;
 }
 #root{
   margin:0;
-  padding-top:80px;
+  padding-top:70px;
   display: flex;
   flex-direction: column;
   min-height: 100%;
 	max-width: 100%;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 	letter-spacing: 0.02rem;
 	line-height: 1.42857;
-  background-color: #fefefe;
+  background-color: #f5f5f5;
 }
 
 /*Global CSS*/
@@ -68,12 +71,12 @@
 	align-items: center;
 	padding:0 100px;
   width:100%;
-  height:80px;
-  font-size: 4.3rem;
+  height:70px;
   color:#010101;
 }
 
 .header__logo{
+	font-size: 4.0rem;
   text-decoration: none;
   font-family: 'Trippp_font';
   color:#000;
@@ -87,15 +90,15 @@
   justify-content: flex-end;
   align-items: center;
   width:auto;
-	height: 2.3rem;
+	height: 2.0rem;
 }
 .sp-menu,.sp-menu__list{
   display: none;
 }
 
 .header__menu-list{
-	font-size: 2.3rem;
-  margin-left:3rem;
+	font-size: 2.1rem;
+  margin-left:4rem;
   text-decoration: none;
   color:#000 !important;
 	position: relative;
@@ -122,14 +125,17 @@
   padding:10px 0;
   width:100%;
   flex:1;
+	background-color: white;
 }
 .content{
   color:#010101;
   width:1200px;
+	padding:10px;
   padding:0;
 	margin: 0 auto;
-  background-color: #fefefe;
-	font-size: 2.3rem;
+  background-color: none;
+	font-size: 1.8rem;
+	line-height: 180%;
 }
 
 /*Content CSS description*/
@@ -168,7 +174,6 @@
 	height:auto;
 	margin-bottom: 10px;
 	font-weight: bold;
-	font-size: 2rem;
 	display: flex;
 	justify-content: left;
 }
@@ -195,8 +200,10 @@
 }
 
 .footer__itemfield-links{
-	width: 50%;
+	max-width: 50%;
+	font-size: 1.6rem;
 	margin-bottom: 10px;
+	color: white;
 }
 .footer__itemfield-links:before{
 	content: "・";
@@ -210,6 +217,7 @@
 }
 .footer__description{
 	margin-top:30px;
+	font-size: 1.6rem;
 	display: flex;
 	justify-content: center;
 }
@@ -248,6 +256,12 @@
 	.content{
 		width:850px;
 	}
+	.header__menu-list{
+		font-size: 1.8rem;
+		margin:0;
+		margin-left:2rem;
+	}
+
 	.footer-inner{
 		width:850px;
 	}
@@ -277,7 +291,6 @@
 		padding:0 10px;
     width:100%;
     height:50px;
-    font-size: 3rem;
     color:#010101;
     background-color: #fefefe;
   }
@@ -367,11 +380,14 @@
     color:#010101;
     width:90%;
     background-color: #fefefe;
+		font-size: 1.6rem;
+		line-height: 1.5;
+		letter-spacing: 1px;
   }
 
 	.footer{
 		width:100%;
-		height:500px;
+		height:550px;
 		display: flex;
 		justify-content: center;
 		background: #333;
@@ -387,7 +403,7 @@
 	.footer__left{
 		width:100%;
 		flex: none;
-		height:200px;
+		height:250px;
 		padding-top:30px;
 	}
 	.footer__right{
@@ -423,7 +439,7 @@
 	.footer__itemfield{
 		display: flex;
 		flex-direction: column;
-		align-items: right;
+		align-items: center;
 		flex-wrap: wrap;
 		width: 100%;
 		height:auto;

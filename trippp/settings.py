@@ -82,16 +82,18 @@ TINYMCE_DEFAULT_CONFIG = {
             }
     """,
     'plugins': '''
-    textcolor save link image media preview  contextmenu
-    table lists fullscreen  insertdatetime  nonbreaking
-    contextmenu directionality searchreplace wordcount fullscreen autolink lists  charmap print  hr
-    anchor pagebreak imagetools paste code
+    textcolor save link image media preview codesample contextmenu
+            table code lists fullscreen  insertdatetime  nonbreaking
+            contextmenu directionality searchreplace wordcount visualblocks
+            visualchars code fullscreen autolink lists  charmap print  hr
+            anchor pagebreak
     ''',
     'toolbar1': '''
     fullscreen preview bold italic underline | forecolor backcolor | alignleft alignright |
-    aligncenter alignjustify | indent outdent code | searchreplace  table |
-    | link image |
+    aligncenter alignjustify bullist code | indent outdent formatselect | searchreplace  table |
+    |  link image  |
     ''',
+    'block_formats': "Paragraph=p;区切り=h2;",
     'contextmenu': 'formats | link image',
     'menubar': False,
     'statusbar':True,

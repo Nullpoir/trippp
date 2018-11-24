@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+<script type="text/javascript" src="{% static 'js/redirect_tabilog.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+正常に消去しました。5秒後にトップへ遷移します。もし遷移しない場合、<a href="/">こちらからTOPへ</a>。
+{% endblock %}

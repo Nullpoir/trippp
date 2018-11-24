@@ -8,6 +8,19 @@
 {% endblock %}
 
 {% block content %}
-  <div class="content__pubdate">{{tabilog.pub_date}}</div>
-  {{tabilog.content | safe}}
+  <div class="content__body">
+    <h1>{{tabilog.title}}</h1>
+    <div class="content__pubdate">{{tabilog.pub_date}}</div>
+    {{tabilog.content | safe}}
+  </div>
+  <div class="content__side-wrap">
+    <div class="content__side">
+      {% if tabilog.index != "" %}
+        <div class="index">
+          ＜目次＞
+          {{tabilog.index | safe}}
+        </div>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}

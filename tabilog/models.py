@@ -8,8 +8,9 @@ class tabilog(models.Model):
     pub_date=models.DateTimeField(default=datetime.now)
     author=models.CharField(max_length=100)
     user_pk=models.IntegerField()
-    thumbnail = models.ImageField(upload_to='thambnail/')
-    body=HTMLField("content")
+    thumbnail = models.ImageField(upload_to='thambnail/',blank=True)
+    body=HTMLField("body")
     content=HTMLField("content")
+    index=HTMLField("index",blank=True)
     def __str__(self):
         return self.title

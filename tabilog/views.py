@@ -79,23 +79,26 @@ def TabilogPost(request):
         if request.POST and form.is_valid():
             username=User.objects.get(pk=request.user.id).nickname
             print(request.POST)
-            print("parse now")
-            draft=tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,body=request.POST["body"],content=parse(request.POST["body"]))
+            res=parse(request.POST["body"])
+            draft=tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,body=request.POST["body"],content=res[0],index=res[1])
             draft.save()
             return HttpResponseRedirect("/tabilog/post_done/")
 
     return render(request,"tabilog/postform.html",context)
 
-def tabilog_delete(request,tabilog_pk):
+@login_required
+def tabilog_delete(request,user_pk,tabilog_pk):
+    req_user = request.user
     post = get_object_or_404(tabilog, pk=tabilog_pk)
 
     if req_user.pk == post.user_pk or req_user.is_superuser:
         alldel(post.body)
         post.delete();
-        return render("aaa");
+        return render(request,"tabilog/delete_complete.html");
     else:
         return HttpResponseRedirect("/")
 
+@login_required
 def tabilog_update(request,user_pk,tabilog_pk):
     req_user = request.user
 
@@ -107,7 +110,9 @@ def tabilog_update(request,user_pk,tabilog_pk):
         if request.method == 'POST' and form.is_valid():
             post.title=request.POST["title"]
             post.body=request.POST["body"]
-            post.content=parse(request.POST["body"])
+            res=parse(request.POST["body"])
+            post.content=res[0]
+            post.index=res[1]
             post.save()
 
             return HttpResponseRedirect("/tabilog/post_done/")

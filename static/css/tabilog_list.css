@@ -13,6 +13,10 @@
   margin-bottom:10px;
   text-decoration: none;
   color: #010101;
+  margin: 20px 0;
+  border-top: dotted 2px gray;
+  border-bottom: dotted 2px gray;
+  padding: 10px 0;
 }
 .tabilog-card:hover{
   opacity: 0.7;
@@ -24,8 +28,50 @@
   border: solid 1px gray ;
   margin-right: 20px;
 }
+.content__form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.form__text{
+  height:3rem;
+  width: 850px;
+}
+.form__choice{
+  width:200px;
+  height:3rem;
+}
+.form__search-button{
+  height:3rem;
+  width:100px;
+  padding:3px 10px;
+  background-color: #55ccff;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+}
+
+.form__text{
+  width:950px;
+}
+.form__choice{
+  width:100px;
+}
+.form__search-button{
+  width:100px;
+  padding:3px 10px;
+}
+
 .tabilog-card__description{
 
+}
+.description__items{
+  width:100%;
+  height:2.3rem;
+  font-size: 1.5rem;
+  overflow: hidden;
 }
 .content__list{
   display: flex;
@@ -40,4 +86,36 @@
   justify-content: center;
   align-items: center;
 
+}
+
+@media(max-width:1300px){
+  .tabilog-card__thumbanail{
+    display: none;
+  }
+  .form__text{
+    width:600px;
+  }
+  .form__choice{
+    width:100px;
+  }
+  .form__search-button{
+    width:100px;
+    padding: 0;
+  }
+}
+
+@media(max-width:900px){
+  .tabilog-card__thumbanail{
+    display: none;
+  }
+  .form__text{
+    width:70%;
+  }
+  .form__choice{
+    width:10%;
+  }
+  .form__search-button{
+    width:10%;
+    padding:0;
+  }
 }

@@ -16,7 +16,7 @@
     {{ field }}
     {% endfor %}
 
-    <button type="submit" class="">検索</button>
+    <button type="submit" class="form__search-button">検索</button>
   </form>
 
   <div class="content__list">
@@ -25,9 +25,9 @@
       <a class="tabilog-card" href="/tabilog/articles/{{ list.pk }}">
         <div class="tabilog-card__thumbanail"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==" alt="NoImages"></img></div>
         <div class="tabilog-card__description">
-          記事名　{{ list.title}}<br>
-          著　者　{{list.author}}<br>
-          投稿日　{{list.pub_date}}
+          <div class="description__items">記事名:　{{ list.title}}</div>
+          <div class="description__items">著　者:　{{list.author}}</div>
+          <div class="description__items">投稿日:　{{list.pub_date}}</div>
 
         </div>
       </a>

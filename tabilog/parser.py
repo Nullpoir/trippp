@@ -37,6 +37,8 @@ def parse(fin):
 
     s=fin.split("\n")
     res=""
+    count=1
+    index=""
     for line in s:
 
         if ("src=" in line) and ("img" in line) and not ("lazyload" in line):
@@ -48,7 +50,16 @@ def parse(fin):
             new_src="class=\"lazyload\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==\" data-src=\""+src+"\""
             new_line=line.replace(rep,new_src)
             res+=new_line
+            print(new_line)
+        elif ("<h2>" in line) and ("</h2>" in line):
+            seek_pre=line.find("<h2>")+4
+            seek_las=line.find("</h2>")
+            name=line[seek_pre:seek_las]
+            new_line="<div id=\""+str(count)+"\" style=\"padding-top:70px;\"><h2>"+name+"</h2></div>"
+            res+=new_line
+            index+="<a class=\"index__items\" href=\"#"+str(count)+"\">"+name+"</a>"
+            count+=1
         else:
             res+=line
 
-    return res
+    return res,index

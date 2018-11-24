@@ -10,9 +10,16 @@
 <div class="content__wrapper__content">
   <div class="content__list">
   {% for list in lists %}
-      {{list.pub_date}}　投稿：
-      <a href="/tabilog/articles/{{ list.pk }}">{{ list.title}}</a>
-      <a href="/tabilog/edit/{{list.user_pk}}/{{ list.pk }}">編集</a>
+    <div class="list__items">
+      <div class="items-left">
+        {{list.pub_date}}投稿<br>タイトル:<br>
+        <a href="/tabilog/articles/{{ list.pk }}">{{ list.title}}</a>
+      </div>
+      <div class="items-right">
+        <a class="items-delete" href="/tabilog/delete/{{list.user_pk}}/{{ list.pk }}"><i class="fas fa-eraser"></i></a>
+        <a class="items-edit" href="/tabilog/edit/{{list.user_pk}}/{{ list.pk }}"><i class="fas fa-pencil-alt"></i></i></a>
+      </div>
+    </div>
   {% endfor %}
   </div>
 

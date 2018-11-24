@@ -77,7 +77,10 @@
         <div class="footer__itemfield">
           <a class="footer__itemfield-links nodeclink">Trippp-Web-Serviceについて</a>
           <a class="footer__itemfield-links nodeclink">ヘルプ</a>
-          <a class="footer__itemfield-links nodeclink">個人情報保護方針</a>
+          <a class="footer__itemfield-links nodeclink" href="">個人情報保護方針</a>
+          {% if user.is_authenticated %}
+            <a class="footer__itemfield-links nodeclink" href="/account/delete_user/{{user.id}}">退会する</a>
+          {% endif %}
         </div>
       </div>
       <div class="footer__right">

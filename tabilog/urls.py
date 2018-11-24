@@ -10,4 +10,5 @@ urlpatterns = [
     path('articles/<int:number>',views.tabilog_show,name="tabilog_show"),
     path('post_history/<int:user_pk>',views.post_history.as_view(),name="post_history"),
     path('edit/<int:user_pk>/<int:tabilog_pk>',views.tabilog_update,name="tabilog_update"),
+    path('delete/<int:user_pk>/<int:tabilog_pk>',views.tabilog_delete,name="tabilog_delete"),
 ]
