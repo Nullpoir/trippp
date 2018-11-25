@@ -20,6 +20,8 @@
   {% csrf_token %}
     <label class="label">{{form.title.label}}</label>
     {{form.title|add_class:"short-form"}}
+    <label class="label">{{form.tag.label}} (キーワードをスペースで区切って入力してください)</label>
+    {{form.tag|add_class:"short-form"}}
     <label class="label">{{form.body.label}}</label>
     {{form.body|add_class:"long-form"}}
 

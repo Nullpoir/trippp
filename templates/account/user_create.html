@@ -8,17 +8,19 @@
 
 {% block content %}
 <h2>必要情報のご記入</h2>
-各項目の内容をご入力ください
   <form class="form_wrap" action="" method="POST">
+    <div class="form-decription">各項目の内容をご入力ください</div>
       {{ form.non_field_errors }}
       {% for field in form %}
       <div class="form">
-          <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+          <label class="form-label" for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
           {{ field }}
           {{ field.errors }}
       </div>
       {% endfor %}
       {% csrf_token %}
-      <button type="submit" class="btn btn-primary btn-lg">送信</button>
+      <div class="submit-container">
+        <button type="submit" class="submit-button">送信</button>
+      </div>
   </form>
 {% endblock %}

@@ -21,6 +21,18 @@ from .forms import (
 
 User = get_user_model()
 
+def user_delete_confirm(request):
+    return render(request,"account/user_delete_confirm.html")
+
+def user_delete(request,user_pk):
+    req_user=request.user
+    user=User.objects.get(pk=user_pk)
+    if req_user.pk == user.pk or req_user.is_superuser:
+        user.delete()
+        return render(request,"tabilog/delete_complete.html")
+    else:
+        return HttpResponseRedirect("/")
+
 class Top(generic.TemplateView):
     template_name = 'top.html'
 

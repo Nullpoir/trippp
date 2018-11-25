@@ -18,7 +18,7 @@ class TabilogPostingForm(forms.ModelForm):
 
     class Meta:
         model=TabilogDraft
-        fields = ('title','body')
+        fields = ('title','tag','body')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

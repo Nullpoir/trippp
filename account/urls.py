@@ -18,4 +18,6 @@ urlpatterns = [
     path('reset/done/', views.PasswordResetComplete.as_view(), name='password_reset_complete'),
     path('password_change/', views.PasswordChange.as_view(), name='password_change'),
     path('password_change/done/', views.PasswordChangeDone.as_view(), name='password_change_done'),
+    path('user_delete', views.user_delete_confirm, name='user_delete_confirm'),
+    path('user_delete/<int:user_pk>', views.user_delete, name='user_delete'),
 ]

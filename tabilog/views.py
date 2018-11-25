@@ -2,6 +2,7 @@ from django.shortcuts import render,HttpResponseRedirect,get_object_or_404
 from .forms import TabilogPostingForm,TabilogSearchForm
 from django.contrib.auth.decorators import login_required
 from tabilog.models import tabilog
+from django.db.models import Q
 from datetime import datetime
 from django.contrib.auth import get_user_model
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -43,18 +44,30 @@ def tabilog_list_show(request):
             "keywords":keywords,
             "option":option
         }
-        print(context)
+        keywords=keywords.replace("　"," ")
+        list=keywords.split(" ")
+        print(list)
+        query=Q()
         form=TabilogSearchForm(context)
+
         if option == "title":
-            tabilog_all=tabilog.objects.all().filter(title__icontains=keywords)
+
+            for items in list:
+                query.add(Q(title__icontains=items),Q.OR)
+
+            tabilog_all=tabilog.objects.all().filter(query)
             paginator=Paginator(tabilog_all,PAGE_LIMIT)
             tabilog_output=paginator.get_page(page)
         elif option == "tag":
-            tabilog_all=tabilog.objects.all().filter(tag__icontains=keywords)
+            for items in list:
+                query.add(Q(tag__icontains=items),Q.OR)
+            tabilog_all=tabilog.objects.all().filter(query)
             paginator=Paginator(tabilog_all,PAGE_LIMIT)
             tabilog_output=paginator.get_page(page)
         else:
-            tabilog_all=tabilog.objects.all().filter(author__icontains=keywords)
+            for items in list:
+                query.add(Q(author__icontains=items),Q.OR)
+            tabilog_all=tabilog.objects.all().filter(query)
             paginator=Paginator(tabilog_all,PAGE_LIMIT)
             tabilog_output=paginator.get_page(page)
         return render(request,"tabilog/tabilog_list.html",{"lists":tabilog_output,"form":form,"search_flag":1})
@@ -80,7 +93,7 @@ def TabilogPost(request):
             username=User.objects.get(pk=request.user.id).nickname
             print(request.POST)
             res=parse(request.POST["body"])
-            draft=tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,body=request.POST["body"],content=res[0],index=res[1])
+            draft=tabilog(title=request.POST["title"],author=username,user_pk=request.user.id,body=request.POST["body"],content=res[0],index=res[1],tag=request.POST["tag"])
             draft.save()
             return HttpResponseRedirect("/tabilog/post_done/")
 
@@ -93,7 +106,7 @@ def tabilog_delete(request,user_pk,tabilog_pk):
 
     if req_user.pk == post.user_pk or req_user.is_superuser:
         alldel(post.body)
-        post.delete();
+        post.delete()
         return render(request,"tabilog/delete_complete.html");
     else:
         return HttpResponseRedirect("/")
@@ -113,6 +126,7 @@ def tabilog_update(request,user_pk,tabilog_pk):
             res=parse(request.POST["body"])
             post.content=res[0]
             post.index=res[1]
+            post.tag=request.POST["tag"]
             post.save()
 
             return HttpResponseRedirect("/tabilog/post_done/")

@@ -16,7 +16,9 @@
           {{ field | add_class:"card-body__field"}}
           {{ field.errors }}<br><br>
       {% endfor %}
-      <button type="submit" class="submit_button" >ログイン</button>
+      <div class="submit-container">
+        <button type="submit" class="submit-button" >ログイン</button>
+      </div>
       <input type="hidden" name="next" value="{{ next }}" />
       {% csrf_token %}
 

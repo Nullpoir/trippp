@@ -24,7 +24,7 @@ class UserCreateForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['class'] = 'form-box'
 
 class UserUpdateForm(forms.ModelForm):
     """ユーザー情報更新フォーム"""
@@ -37,7 +37,7 @@ class UserUpdateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
-            
+
 class MyPasswordChangeForm(PasswordChangeForm):
     """パスワード変更フォーム"""
 
