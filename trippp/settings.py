@@ -217,7 +217,7 @@ else:
     DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'trippp-core',
+            'NAME': 'trippp',
             'USER': 'root',
             'PASSWORD': 'trippp0410',
             'HOST': 'localhost',

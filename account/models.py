@@ -37,7 +37,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    email=models.EmailField(_('メールアドレス'), unique=True)
+    email=models.EmailField(_('メールアドレス'), unique=True,max_length=100)
     nickname=models.CharField(_('表示名(30文字以内)'), max_length=30)
 
     is_staff = models.BooleanField(
