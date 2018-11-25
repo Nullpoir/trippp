@@ -1,0 +1,72 @@
+.content-inner{
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height:700px;
+}
+
+.confirm-box{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width:450px;
+  height:250px;
+  padding:20px;
+  border: solid 1px gray;
+}
+
+.confirm-box__massage{
+  width:100%;
+  text-align: center;
+}
+.confirm-box__choices{
+  width:100%;
+  margin-top:50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-box__button{
+  width:100px;
+  font-size: 1.6rem;
+  height: 3rem;
+  text-decoration: none;
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color:white;
+  flex:none;
+}
+
+.button-yes{
+  background-color: #ff3388;
+}
+
+.button-no{
+  background-color: #33aaee;
+}
+
+@media(max-width:900px){
+  .content-inner{
+    min-height:400px;
+  }
+  .confirm-box{
+    width:80%;
+    height:250px;
+  }
+  .confirm-box__choices{
+
+  }
+  .confirm-box__button{
+
+  }
+  .confirm-box__button{
+    width:75px;
+    margin-right: 10px;
+  }
+}

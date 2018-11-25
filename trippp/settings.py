@@ -74,13 +74,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'width': '100%',
     'cleanup_on_startup': True,
     'theme': 'modern',
-    'mobile':"""
-            {
-                theme:mobile,
-                height: 360,
-                width: 100%,
-            }
-    """,
     'plugins': '''
     textcolor save link image media preview codesample contextmenu
             table code lists fullscreen  insertdatetime  nonbreaking
@@ -94,6 +87,19 @@ TINYMCE_DEFAULT_CONFIG = {
     |  link image  |
     ''',
     'block_formats': "Paragraph=p;区切り=h2;",
+    'mobile':"""
+    {
+    theme:mobile,
+    height: 360,
+    width: 100%,
+    plugins:[formatselect]
+
+    toolbar:[
+    'preview','bold','italic','underline','forecolor','backcolor','alignleft','alignright',
+    'aligncenter','alignjustify','bullist','code','indent','outdent','formatselect','searchreplace','table',
+    'link','image'  ]
+    }
+    """,
     'contextmenu': 'formats | link image',
     'menubar': False,
     'statusbar':True,
@@ -200,12 +206,30 @@ WSGI_APPLICATION = 'trippp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+    'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'trippp-core',
+            'USER': 'root',
+            'PASSWORD': 'trippp0410',
+            'HOST': 'localhost',
+            'PORT': '8889',
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            },
+            'TEST': {
+                'NAME': 'trippp'
+            }
+        }
+    }
 
 
 # Password validation

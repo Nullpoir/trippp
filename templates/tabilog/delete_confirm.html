@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+  <title>Trippp -マイページ-</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/delete_confirm.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="content-inner">
+    <div class="confirm-box">
+      <div class="confirm-box__massage">
+        <i class="fas fa-exclamation-triangle"></i> 削除してもよろしいですか？
+      </div>
+      <div class="confirm-box__choices">
+        <a class="confirm-box__button button-yes" href="/tabilog/delete/{{user_pk}}/{{tabilog_pk}}">はい</a>
+        <a class="confirm-box__button button-no" href="/account/mypage/{{user_pk}}">いいえ</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

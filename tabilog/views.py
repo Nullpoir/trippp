@@ -100,6 +100,11 @@ def TabilogPost(request):
     return render(request,"tabilog/postform.html",context)
 
 @login_required
+def tabilog_pre_delete(request,user_pk,tabilog_pk):
+    context={"user_pk":user_pk,"tabilog_pk":tabilog_pk}
+    return render(request,"tabilog/delete_confirm.html",context);
+
+@login_required
 def tabilog_delete(request,user_pk,tabilog_pk):
     req_user = request.user
     post = get_object_or_404(tabilog, pk=tabilog_pk)

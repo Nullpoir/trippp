@@ -62,6 +62,7 @@
 .form__search-button{
   width:100px;
   padding:3px 10px;
+  flex:none;
 }
 
 .tabilog-card__description{
@@ -109,13 +110,14 @@
     display: none;
   }
   .form__text{
-    width:70%;
+    width:65%;
   }
   .form__choice{
     width:10%;
   }
   .form__search-button{
-    width:10%;
+    width:55px;
     padding:0;
+    flex:none;
   }
 }
